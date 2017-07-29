@@ -1,0 +1,10 @@
+wni(X) <- ortu(Y,X), wni(Y).
+
+ortu(Y,X) <- ibudari(Y,X).
+ortu(Y,X) <- ayahdari(Y,X).
+
+<- ibudari(Y,X), ayahdari(Y,X).
+
+wni(ibu).
+ibudari(ibu,anak).
+abds([ibudari/2, ayahdari/2]).

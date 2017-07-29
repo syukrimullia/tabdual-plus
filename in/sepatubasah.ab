@@ -1,0 +1,5 @@
+abds([tadi_malam_hujan/0, penyiram_rumput_menyala/0]).
+
+rumput_basah <- tadi_malam_hujan.
+rumput_basah <- penyiram_rumput_menyala.
+sepatu_basah <- rumput_basah,tadi_malam_hujan.

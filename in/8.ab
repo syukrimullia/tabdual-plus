@@ -1,0 +1,11 @@
+beginProlog.
+c(1).
+c(2).
+endProlog.
+
+abds([a/1,b/1]).
+
+p(X) <- a(X), c(X).
+p(X) <- a(X), b(X), c(X).
+
+<- a(X), b(X).

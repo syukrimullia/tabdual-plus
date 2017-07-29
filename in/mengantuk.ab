@@ -1,0 +1,8 @@
+abds([kurang_tidur/0,lapar/0]).
+
+mengantuk <- kurang_tidur.
+tidak_fokus <- mengantuk,lapar.
+tidur_di_kelas <- tidak_fokus,mengantuk.
+minum_kopi.
+
+<- minum_kopi, kurang_tidur.

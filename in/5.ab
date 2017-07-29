@@ -1,0 +1,10 @@
+beginProlog.
+q(1).
+endProlog.
+
+abds([a/1,b/1]).
+
+r(X) <- not a(X).
+r(X) <- b(X).
+
+<- q(X), r(X).
