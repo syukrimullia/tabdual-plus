@@ -1,4 +1,4 @@
-# Tabling in Contextual Abduction with Answer Subsumption
+# TABDUAL+ : Tabling in Contextual Abduction with Answer Subsumption
 
 ## Prerequisites
 This implementation needs XSB Prolog to be installed in your machine. For convenience, you might want to put the path to directory where the XSB command is found in your `$PATH` environment variable. Otherwise, you have to include the path to directory where you have this implementation into XSB default search paths using predicate `library_directory/1`.
