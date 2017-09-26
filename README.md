@@ -19,6 +19,7 @@ With regard to properties mentioned above, your input program must be written in
 1. `beginProlog.` and `endProlog.` identifiers, and also facts and programs that need to be placed between them. This part is unnecessary when no such program in it.
 2. Abducibles.
 3. Rules.
+
 Please take a look at `in` folder for examples.
 
 ## How to Use
