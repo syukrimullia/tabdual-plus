@@ -12,7 +12,7 @@
 :- op(1110, xfy, '<-').
 
 % Deklarasi predikat dinamis
-:- dynamic has_rules/1, rule/2, rule/3, abds/1, numvars/1.
+:- dynamic has_rules/1, rule/2, rule/3, has_pred/1, abds/1, numvars/1.
 
 % Directive lainnya
 :- consult_files, retractall(mode(_)), assert(mode(table)), clear.
@@ -85,6 +85,7 @@ clear :-
 	retractall(rule(_, _)),
 	retractall(rule(_, _, _)), 
 	retractall(abds(_)),
+	retractall(has_pred(_)),
 	retractall(numvars(_)),
 	assert(numvars(0)),
 	trie_drop(dual), !,
@@ -163,12 +164,14 @@ readd_rules([R|RR]) :-
 % Transformasi
 transform :- 
 	transform_per_rule,
+	transform_pred_without_rules,
 	transform_if_no_ic,
 	transform_abducibles.
 
 % ---- Membentuk ransformasi t', t+, t-, dan t* (by need) ---- %
 transform_per_rule :-
 	retract(has_rules(H)),
+	retract(has_pred(H)),
 	find_rules(H, R, _),
 	generate_apostrophe_rules(R),
 	generate_positive_rules(H),
@@ -310,6 +313,19 @@ generate_first_star_rule(R, X, N) :-
 	write_rule(RStarN, B),
 	nl.
 % ---- End of transformasi t* (second layer dual rule)---- %
+
+transform_pred_without_rules :-
+	retract(has_pred(R)),
+	functor(R, N, A),
+	functor(GenR, N, A),
+	GenR =.. [GenN|T],
+	append(T, [I,I], TT),
+	GenRTT =.. [GenN|TT],
+	add_not_prefix(GenRTT, NotGenR),
+	write_rule(NotGenR, true),
+	nl,
+	transform_pred_without_rules.
+transform_pred_without_rules.
 
 % ---- Transformasi jika tidak ada IC ---- %
 transform_if_no_ic :-

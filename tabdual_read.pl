@@ -2,7 +2,6 @@
 
 % Import
 :- import append/3 from basics.
-:- import write_rule/2 from write.
 
 % Membaca abducible
 read_rule(abds(A)) :- !,
@@ -17,6 +16,7 @@ read_rule(( <- B)) :- !,
 % Membaca rule H <- B.
 read_rule((H <- B)) :- !,
 	assert_has_rules(H),
+	assert_body(B),
 	assert_rule(H, B).
 
 % Membaca fakta H
@@ -26,17 +26,29 @@ read_rule(H) :-
 
 % ---- Asserting ---- %
 assert_rule(H) :- 
-	asserta(rule((H, true))).
+	assert(rule((H, true))).
 assert_rule(H, B) :- 
-	asserta(rule(H, B)).
+	assert(rule(H, B)).
+
+assert_body((B, BB)) :- !,
+	assert_has_pred(B),
+	assert_body(BB).
+assert_body(B) :-
+	assert_has_pred(B).
 
 assert_abducible(A) :- 
-	asserta(abds(A)).
+	assert(abds(A)).
 
 assert_if_not_exist(X) :- 
 	X, !.
 assert_if_not_exist(X) :- 
-	asserta(X).
+	assert(X).
+
+assert_has_pred(B) :-
+	is_abducible(B), !.
+assert_has_pred(B) :-
+	find_predicate(B, BB),
+	assert_if_not_exist(has_pred(BB)).
 
 assert_has_rules(R) :-
 	find_predicate(R, RR),
