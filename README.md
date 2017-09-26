@@ -11,7 +11,7 @@ This implementation consists of two stages:
 ## Specifying Your Knowledge Base
 You can define an input program, i.e. a logic program, as your own knowledge base inside `in` folder in a file called `{filename}.ab`. Your input program has to satisfy following properties:
 * *Abducibles* is specified by predicate `abds/1` whose argument is a list of abducibles along with its arity. For example `abds([a/1, b/2, c/3])`.
-* To define a rule, please use `<-` instead of `:-` to denote *if* operator. For example, please use `H <- X, Y.` instead of using `H :- X, Y.`.
+* To define a rule (including an *integrity constraint*), please use `<-` instead of `:-` to denote *if* operator. For example, please use `H <- X, Y.` instead of using `H :- X, Y.`.
 * Predicates comprising just fact are written separately between the `beginProlog.` and `endProlog.` identifiers. See `in/4.ab` for an example.
 * Regular Prolog programs (those that will not be transformed) are also written separately between the `beginProlog.` and `endProlog.` identifiers. Please use `H :- X, Y.` instead of using `H <- X, Y.` when defining regular Prolog programs because these programs will not be transformed but will be rewritten as it is.
 
@@ -19,6 +19,7 @@ With regard to properties mentioned above, your input program must be written in
 1. `beginProlog.` and `endProlog.` identifiers, and also facts and programs that need to be placed between them. This part is unnecessary when no such program in it.
 2. Abducibles.
 3. Rules.
+Please take a look at `in` folder for examples.
 
 ## How to Use
 1. Open a terminal in the directory where you have this implementation.
