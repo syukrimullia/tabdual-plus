@@ -114,6 +114,9 @@ write_test_q_body(N) :-
 % ---- End of menulis generator ---- %
 
 % ---- Menulis hasil koleksi solusi ---- %
+write_solution([], _) :- !, fail.
+write_solution([S|Sol], Num) :-
+	write_solutions([S|Sol], Num).
 write_solutions([], _).
 write_solutions([S|Sol], Num) :-
 	write_ln(['(', Num, ') ', S]),

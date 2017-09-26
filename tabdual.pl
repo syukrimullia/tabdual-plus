@@ -60,7 +60,7 @@ ask(Q, I, O) :-
 % Tambahan ask/1
 ask(Q) :- 
 	findall(O, ask(Q,O), Sol),
-	write_solutions(Sol,1).
+	write_solution(Sol,1).
 
 % ---- Mendapatkan seluruh solusi ---- %
 checksol(Q) :- findall(Sol, ask(Q,Sol), L), \+ empty(L).
