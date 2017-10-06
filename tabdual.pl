@@ -171,7 +171,7 @@ transform :-
 % ---- Membentuk ransformasi t', t+, t-, dan t* (by need) ---- %
 transform_per_rule :-
 	retract(has_rules(H)),
-	retract(has_pred(H)),
+	remove_has_pred(H),
 	find_rules(H, R, _),
 	generate_apostrophe_rules(R),
 	generate_positive_rules(H),
@@ -179,6 +179,10 @@ transform_per_rule :-
 	nl,
 	transform_per_rule.
 transform_per_rule.
+
+remove_has_pred(P) :-
+	retract(has_pred(P)), !.
+remove_has_pred(_).
 
 % ---- Transformasi t` ---- %
 generate_apostrophe_rules([]).
